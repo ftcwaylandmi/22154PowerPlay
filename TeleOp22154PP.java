@@ -16,5 +16,13 @@ public class TeleOp22154PP extends OpMode{
         robot.LeftDriveMotor(-gamepad1.left_stick_y);
         robot.RightDriveMotor(-gamepad1.right_stick_y);
 
+        robot.armMotor(-gamepad2.left_stick_y);
+
+        if(gamepad1.right_bumper){
+            robot.openServo();
+        }
+        if(gamepad1.left_bumper){
+            robot.closedServo();
+        }
     }
 }

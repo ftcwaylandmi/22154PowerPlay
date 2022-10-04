@@ -18,4 +18,19 @@ public class Robot {
         robotHardware.rightMotor.setPower(power);
     }
 
+    public void Drive(double lP, double rP){
+        robotHardware.leftMotor.setPower(lP);
+        robotHardware.rightMotor.setPower(rP);
+    }
+
+    public void armMotor(double power){
+        robotHardware.armMotor.setPower(power);
+    }
+    public void closedServo(){
+        robotHardware.grabservo.setPosition(0);
+
+    }
+    public void openServo(){
+        robotHardware.grabservo.setPosition(1);
+    }
 }
