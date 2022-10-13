@@ -40,8 +40,7 @@ public class RobotHardware {
         grabServoLeft = hwMap.get(CRServo.class,"grabServoLeft");
         grabServoLeft.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        grabServoRight = hwMap.get(CRServo.class,"grabServoRight" +
-                "");
+        grabServoRight = hwMap.get(CRServo.class,"grabServoRight");
         grabServoRight.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
