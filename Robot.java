@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Robot {
-
     RobotHardware robotHardware = new RobotHardware();
 
     public void InitHardware(HardwareMap ahw){
@@ -23,14 +22,22 @@ public class Robot {
         robotHardware.rightMotor.setPower(rP);
     }
 
-    public void armMotor(double power){
+    public void ArmMotor(double power){
         robotHardware.armMotor.setPower(power);
     }
-    public void closedServo(){
-        robotHardware.grabservo.setPosition(0);
+
+    public void servoIn(){
+        robotHardware.grabServoLeft.setPower(1);
+        robotHardware.grabServoRight.setPower(-1);
 
     }
-    public void openServo(){
-        robotHardware.grabservo.setPosition(1);
+    public void servoOut(){
+        robotHardware.grabServoLeft.setPower(-1);
+        robotHardware.grabServoRight.setPower(1);
+    }
+
+    public void stopServo(){
+        robotHardware.grabServoLeft.setPower(0);
+        robotHardware.grabServoRight.setPower(0);
     }
 }
