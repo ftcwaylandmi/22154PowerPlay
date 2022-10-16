@@ -9,10 +9,7 @@ public class AutonTest extends LinearOpMode {
     private Robot robot = new Robot();
 
     @Override
-    public void runOpMode(){
-        robot.Drive(1,1);
-        sleep(1000);
-        robot.Drive(0,0);
-
+    public void runOpMode() throws InterruptedException {
+        robot.DriveByInches(.5, 60);
     }
 }
