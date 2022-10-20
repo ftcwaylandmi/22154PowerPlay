@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -17,6 +18,8 @@ public class RobotHardware {
 
     public CRServo grabServoRight = null;
     public CRServo grabServoLeft = null;
+
+    public GyroSensor gyroSensor = null;
 
     public void Init(HardwareMap ahwMap) {
         hwMap = ahwMap;
@@ -42,6 +45,8 @@ public class RobotHardware {
 
         grabServoRight = hwMap.get(CRServo.class,"grabServoRight");
         grabServoRight.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        gyroSensor.calibrate();
     }
 
 }

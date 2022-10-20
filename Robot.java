@@ -23,14 +23,68 @@ public class Robot {
         robotHardware.rightMotor.setPower(rP);
     }
 
-    public void DriveByInches(double p, double inches) throws InterruptedException {
+    public void DriveByInches(double p, double otr){
         DcMotor l = robotHardware.leftMotor;
         DcMotor r = robotHardware.rightMotor;
 
-        int convertToTicks = (int) inches/2048;
+        final int ltpr = 230;
+        final int rtpr = 288;
+        final double wheelCir = 4*Math.PI;
 
-        int lTicks = l.getCurrentPosition()+convertToTicks;
-        int rTicks = r.getCurrentPosition()+convertToTicks;
+        int ticksl = (int) ((otr*ltpr)/wheelCir);
+        int ticksr = (int) ((otr*rtpr)/wheelCir);
+
+        final int lTargetTicks = robotHardware.leftMotor.getCurrentPosition()+ticksl;
+        final int rTargetTicks = robotHardware.rightMotor.getCurrentPosition()+ticksr;
+
+        l.setTargetPosition(0);
+        r.setTargetPosition(0);
+
+        l.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        r.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        l.setTargetPosition(lTargetTicks);
+        r.setTargetPosition(rTargetTicks);
+
+        l.setPower(p*.78);
+        r.setPower(p);
+        if(lTargetTicks > l.getCurrentPosition() && rTargetTicks > r.getCurrentPosition()) {
+            while (lTargetTicks > l.getCurrentPosition() && rTargetTicks > r.getCurrentPosition()) {
+                if (lTargetTicks <= l.getCurrentPosition() && rTargetTicks <= r.getCurrentPosition()) {
+                    break;
+                }
+            }
+        }
+        if(lTargetTicks < l.getCurrentPosition() && rTargetTicks < r.getCurrentPosition()) {
+            while (lTargetTicks < l.getCurrentPosition() && rTargetTicks < r.getCurrentPosition()) {
+                if (lTargetTicks >= l.getCurrentPosition() && rTargetTicks >= r.getCurrentPosition()) {
+                    break;
+                }
+            }
+        }
+    }
+
+    public void TurnByInches(double p, double in, int dir){
+        DcMotor l = robotHardware.leftMotor;
+        DcMotor r = robotHardware.rightMotor;
+
+        final int ltpr = 230;
+        final int rtpr = 288;
+        final double wheelCir = 4*Math.PI;
+
+        int ticksl = (int) ((in*ltpr)/wheelCir);
+        int ticksr = (int) ((in*rtpr)/wheelCir);
+
+        int lTicks = robotHardware.leftMotor.getCurrentPosition();
+        int rTicks = robotHardware.rightMotor.getCurrentPosition();
+
+        if(dir == -1){
+            lTicks = robotHardware.leftMotor.getCurrentPosition()+ticksl;
+            rTicks = robotHardware.rightMotor.getCurrentPosition()-ticksr;
+        }else if(dir == 1){
+            lTicks = robotHardware.leftMotor.getCurrentPosition()-ticksl;
+            rTicks = robotHardware.rightMotor.getCurrentPosition()+ticksr;
+        }
 
         l.setTargetPosition(0);
         r.setTargetPosition(0);
@@ -41,11 +95,38 @@ public class Robot {
         l.setTargetPosition(lTicks);
         r.setTargetPosition(rTicks);
 
-        l.setPower(p);
+        l.setPower(p*.78);
         r.setPower(p);
-        while (l.getCurrentPosition()<lTicks+100 || r.getCurrentPosition()<rTicks+100){
-            wait();
+        if(lTicks > l.getCurrentPosition() && rTicks < r.getCurrentPosition()) {
+            while (lTicks > l.getCurrentPosition() && rTicks < r.getCurrentPosition()) {
+                if (lTicks <= l.getCurrentPosition() && rTicks >= r.getCurrentPosition()) {
+                    break;
+                }
+            }
         }
+        if(lTicks < l.getCurrentPosition() && rTicks > r.getCurrentPosition()) {
+            while (lTicks < l.getCurrentPosition() && rTicks > r.getCurrentPosition()) {
+                if (lTicks >= l.getCurrentPosition() && rTicks <= r.getCurrentPosition()) {
+                    break;
+                }
+            }
+        }
+    };
+
+    public int GetGyroHeading() { return robotHardware.gyroSensor.getHeading(); }
+
+    public int GetGyroX() { return robotHardware.gyroSensor.rawX(); }
+
+    public int GetGyroY() { return robotHardware.gyroSensor.rawY(); }
+
+    public int GetGyroZ() { return robotHardware.gyroSensor.rawZ(); }
+
+    public int GetRightMotor(){
+        return robotHardware.rightMotor.getCurrentPosition();
+    }
+
+    public int GetLeftMotor(){
+        return robotHardware.leftMotor.getCurrentPosition();
     }
 
     public void ArmMotor(double power){
