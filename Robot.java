@@ -113,14 +113,6 @@ public class Robot {
         }
     };
 
-    public int GetGyroHeading() { return robotHardware.gyroSensor.getHeading(); }
-
-    public int GetGyroX() { return robotHardware.gyroSensor.rawX(); }
-
-    public int GetGyroY() { return robotHardware.gyroSensor.rawY(); }
-
-    public int GetGyroZ() { return robotHardware.gyroSensor.rawZ(); }
-
     public int GetRightMotor(){
         return robotHardware.rightMotor.getCurrentPosition();
     }

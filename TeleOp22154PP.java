@@ -28,10 +28,6 @@ public class TeleOp22154PP extends OpMode{
 
         telemetry.addData("RMotorTicks", robot.GetRightMotor());
         telemetry.addData("LMotorTicks", robot.GetLeftMotor());
-        telemetry.addData("Heading", robot.GetGyroHeading());
-        telemetry.addData("GyroX", robot.GetGyroX());
-        telemetry.addData("GyroY", robot.GetGyroY());
-        telemetry.addData("GyroZ", robot.GetGyroZ());
         telemetry.update();
     }
 }
