@@ -65,7 +65,7 @@ public class Robot {
         DcMotor l = robotHardware.leftMotor;
         DcMotor r = robotHardware.rightMotor;
 
-        final int ltpr = 230;
+        final int ltpr = 288;
         final int rtpr = 288;
         final double wheelCir = 4*Math.PI;
 
@@ -84,7 +84,7 @@ public class Robot {
         l.setTargetPosition(lTargetTicks);
         r.setTargetPosition(rTargetTicks);
 
-        l.setPower(p*.78);
+        l.setPower(p);
         r.setPower(p);
         if(lTargetTicks > l.getCurrentPosition() && rTargetTicks > r.getCurrentPosition()) {
             while (lTargetTicks > l.getCurrentPosition() && rTargetTicks > r.getCurrentPosition()) {
@@ -107,12 +107,12 @@ public class Robot {
         DcMotor r = robotHardware.rightMotor;
 
         final int tpr = 540;
-        final double wheelCir = 3.54331*Math.PI;
-        final double rotationalCir = 11.375*Math.PI;
+        final double wheelCir = 3.75*Math.PI;
+        final double rotationalCir = 11.5*Math.PI;
         final double ticksPerInch = tpr/wheelCir;
         final double a135 = 3.75;
-        final int a90 = 4;
-        final int a45 = 8;
+        final int a90 = 7;
+        final int a45 = 13;
 
         int ticks = (int) ((tpr/wheelCir)*(rotationalCir/a90));
 
@@ -176,17 +176,17 @@ public class Robot {
 
     public void ArmMotorStickWithLimits(double pStick){
 
-        int leftLimit = 2600;
-        int rightLimit = 0;
+        int leftLimit = 3400;
+        int rightLimit = 200;
 
         DcMotor armMotor = robotHardware.armMotor;
 
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        armMotor.setPower(pStick+);
+        armMotor.setPower(pStick);
 
-        while (armMotor.getCurrentPosition() <= rightLimit){
-            if(pStick > 0){
+        while (armMotor.getCurrentPosition() >= rightLimit){
+            if(pStick < 0){
                 armMotor.setPower(pStick/2);
                 break;
             }else{
@@ -194,8 +194,8 @@ public class Robot {
                 break;
             }
         }
-        while (armMotor.getCurrentPosition() >= leftLimit){
-            if(pStick < 0){
+        while (armMotor.getCurrentPosition() <= leftLimit){
+            if(pStick > 0){
                 armMotor.setPower(pStick/2);
                 break;
             }else {
@@ -268,54 +268,54 @@ public class Robot {
         }
     }
 
-    public void TurnByInches(double p, double in, int dir){
-        DcMotor l = robotHardware.leftMotor;
-        DcMotor r = robotHardware.rightMotor;
-
-        final int ltpr = 230;
-        final int rtpr = 288;
-        final double wheelCir = 4*Math.PI;
-
-        int ticksl = (int) ((in*ltpr)/wheelCir);
-        int ticksr = (int) ((in*rtpr)/wheelCir);
-
-        int lTicks = robotHardware.leftMotor.getCurrentPosition();
-        int rTicks = robotHardware.rightMotor.getCurrentPosition();
-
-        if(dir == -1){
-            lTicks = robotHardware.leftMotor.getCurrentPosition()+ticksl;
-            rTicks = robotHardware.rightMotor.getCurrentPosition()-ticksr;
-        }else if(dir == 1){
-            lTicks = robotHardware.leftMotor.getCurrentPosition()-ticksl;
-            rTicks = robotHardware.rightMotor.getCurrentPosition()+ticksr;
-        }
-
-        l.setTargetPosition(0);
-        r.setTargetPosition(0);
-
-        l.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        r.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        l.setTargetPosition(lTicks);
-        r.setTargetPosition(rTicks);
-
-        l.setPower(p*.78);
-        r.setPower(p);
-        if(lTicks > l.getCurrentPosition() && rTicks < r.getCurrentPosition()) {
-            while (lTicks > l.getCurrentPosition() && rTicks < r.getCurrentPosition()) {
-                if (lTicks <= l.getCurrentPosition() && rTicks >= r.getCurrentPosition()) {
-                    break;
-                }
-            }
-        }
-        if(lTicks < l.getCurrentPosition() && rTicks > r.getCurrentPosition()) {
-            while (lTicks < l.getCurrentPosition() && rTicks > r.getCurrentPosition()) {
-                if (lTicks >= l.getCurrentPosition() && rTicks <= r.getCurrentPosition()) {
-                    break;
-                }
-            }
-        }
-    };
+//    public void TurnByInches(double p, double in, int dir){
+//        DcMotor l = robotHardware.leftMotor;
+//        DcMotor r = robotHardware.rightMotor;
+//
+//        final int ltpr = 230;
+//        final int rtpr = 288;
+//        final double wheelCir = 4*Math.PI;
+//
+//        int ticksl = (int) ((in*ltpr)/wheelCir);
+//        int ticksr = (int) ((in*rtpr)/wheelCir);
+//
+//        int lTicks = robotHardware.leftMotor.getCurrentPosition();
+//        int rTicks = robotHardware.rightMotor.getCurrentPosition();
+//
+//        if(dir == -1){
+//            lTicks = robotHardware.leftMotor.getCurrentPosition()+ticksl;
+//            rTicks = robotHardware.rightMotor.getCurrentPosition()-ticksr;
+//        }else if(dir == 1){
+//            lTicks = robotHardware.leftMotor.getCurrentPosition()-ticksl;
+//            rTicks = robotHardware.rightMotor.getCurrentPosition()+ticksr;
+//        }
+//
+//        l.setTargetPosition(0);
+//        r.setTargetPosition(0);
+//
+//        l.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        r.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        l.setTargetPosition(lTicks);
+//        r.setTargetPosition(rTicks);
+//
+//        l.setPower(p*.78);
+//        r.setPower(p);
+//        if(lTicks > l.getCurrentPosition() && rTicks < r.getCurrentPosition()) {
+//            while (lTicks > l.getCurrentPosition() && rTicks < r.getCurrentPosition()) {
+//                if (lTicks <= l.getCurrentPosition() && rTicks >= r.getCurrentPosition()) {
+//                    break;
+//                }
+//            }
+//        }
+//        if(lTicks < l.getCurrentPosition() && rTicks > r.getCurrentPosition()) {
+//            while (lTicks < l.getCurrentPosition() && rTicks > r.getCurrentPosition()) {
+//                if (lTicks >= l.getCurrentPosition() && rTicks <= r.getCurrentPosition()) {
+//                    break;
+//                }
+//            }
+//        }
+//    };
 
     public double GetGyroHeading(){
         return robotHardware.imu.getAngularOrientation().firstAngle;

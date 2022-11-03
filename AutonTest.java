@@ -139,17 +139,31 @@ public class AutonTest extends LinearOpMode {
             // grab cone and raise arm
             robot.EleMotorTicksAuton(1);
 //
-            robot.DriveByInches(.5, 16);
+            robot.DriveByInches(.5, 18);
             int savedPos = _convertLabelToInt(_getLabel());
-//
-            robot.DriveByInches(.5, -4);
-            //robot.TurnByInches(.5, 90, 'r');
-            robot.TurnByGyro(.5, 70,'r');
-            robot.DriveByInches(.5, 20);
-           // robot.TurnByInches(.5, 90, 'l');
-            robot.TurnByGyro(.5, 70, 'l');
-            robot.DriveByInches(.5, 20);
 
+            robot.DriveByInches(.5, 13);
+            robot.DriveByInches(.5, -.5);
+            if(savedPos == 1)
+            {
+                robot.TurnByInches(.5, 90, 'l');
+                robot.DriveByInches(.5, 16);
+            }
+            if(savedPos == 3)
+            {
+                robot.TurnByInches(.5, 90, 'r');
+                robot.DriveByInches(.5, 16);
+            }
+
+//
+//            robot.DriveByInches(.5, -4);
+//            //robot.TurnByInches(.5, 90, 'r');
+//            robot.TurnByInches(.5, 90,'r');
+//            robot.DriveByInches(.5, 20);
+//           // robot.TurnByInches(.5, 90, 'l');
+//            robot.TurnByInches(.5, 90, 'l');
+//            robot.DriveByInches(.5, 20);
+//            robot.TurnByInches(.5, 45, 'r');
 
 //            robot.TurnByInches(.5, 10, -1);
 //            robot.DriveByInches(.5, 20);
