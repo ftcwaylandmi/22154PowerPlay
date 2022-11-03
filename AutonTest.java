@@ -133,26 +133,63 @@ public class AutonTest extends LinearOpMode {
         waitForStart();
 
         if(opModeIsActive()){
+            //telemetry.addData("Heading", robot.robotHardware.imu.getAngularOrientation().firstAngle);
+            //robot.TurnByGyro(.5,70,1);
+            //telemetry.update();
             // grab cone and raise arm
+            robot.EleMotorTicksAuton(1);
+//
             robot.DriveByInches(.5, 16);
             int savedPos = _convertLabelToInt(_getLabel());
-
-            robot.DriveByInches(.5, -14);
-            robot.TurnByInches(.5, 5, 1);
+//
+            robot.DriveByInches(.5, -4);
+            //robot.TurnByInches(.5, 90, 'r');
+            robot.TurnByGyro(.5, 70,'r');
             robot.DriveByInches(.5, 20);
-            robot.TurnByInches(.5, 5, -1);
-            robot.DriveByInches(.5, 18);
-            robot.TurnByInches(.5, 2.5, 1);
-          //score
-            robot.TurnByInches(.5, 7.5, -1);
-            robot.DriveByInches(.5,14);
-            //grab
-            robot.DriveByInches(.5, -14);
-            robot.TurnByInches(.5, 7.5, 1);
-            //score
-            robot.TurnByInches(.5, 7.5, -1);
+           // robot.TurnByInches(.5, 90, 'l');
+            robot.TurnByGyro(.5, 70, 'l');
+            robot.DriveByInches(.5, 20);
+
+
+//            robot.TurnByInches(.5, 10, -1);
+//            robot.DriveByInches(.5, 20);
+//            robot.TurnByInches(.5, 10, 1);
+//            robot.DriveByInches(.5, 18);
+//            robot.TurnByInches(.5, 5, -1);
+////            robot.DriveByInches(.5,10);
+////            robot.EleMotorTicksAuton(4);
+////            //score
+//            robot.EleMotorTicksAuton(4);
+//            robot.servoIn();
+//            sleep(2000);
+//            robot.stopServo();
+////
+//            robot.TurnByInches(.5, 5, 1);
+//            robot.EleMotorTicksAuton(0);
+//            robot.servoIn();
+//            robot.DriveByInches(.5,14);
+//            //grab
+//            sleep(500);
+//            robot.stopServo();
+//
+//            robot.DriveByInches(.5, -14);
+//            robot.TurnByInches(.5, 7.5, 1);
+//
+//            //score
+//            robot.EleMotorTicksAuton(4);
+//            robot.servoOut();
+//            sleep(1000);
+//            robot.stopServo();
+//
+//            robot.TurnByInches(.5, 7.5, -1);
             //go to end pos
-            //
+//            if(savedPos == 1){
+//                robot.DriveByInches(.5, 40);
+//            }else if(savedPos == 2){
+//                robot.DriveByInches(.5,16);
+//            }else if(savedPos ==3){
+//
+//            }
         }
 
 

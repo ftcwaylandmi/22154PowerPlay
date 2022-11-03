@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -18,8 +19,21 @@ public class RobotHardware {
     public CRServo grabServoRight = null;
     public CRServo grabServoLeft = null;
 
+    public BNO055IMU imu = null;
+
     public void Init(HardwareMap ahwMap) {
         hwMap = ahwMap;
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+
+        parameters.mode = BNO055IMU.SensorMode.IMU;
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled = false;
+
+        imu = hwMap.get(BNO055IMU.class, "imu");
+
+        imu.initialize(parameters);
 
         rightMotor = hwMap.get(DcMotor.class, "rightMotor");
         leftMotor = hwMap.get(DcMotor.class, "leftMotor");
@@ -35,7 +49,9 @@ public class RobotHardware {
         armMotor = hwMap.get(DcMotor.class, "armMotor");
         armMotor.setPower(0);
 
-        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armMotor.setTargetPosition(0);
+
+        armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         grabServoLeft = hwMap.get(CRServo.class,"grabServoLeft");
         grabServoLeft.setDirection(DcMotorSimple.Direction.FORWARD);
