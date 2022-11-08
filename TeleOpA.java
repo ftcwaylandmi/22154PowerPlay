@@ -3,8 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "TeleOp22154PP", group = "22154")
-public class TeleOp22154PP extends OpMode{
+@TeleOp(name = "TeleOp", group = "22154")
+public class TeleOpA extends OpMode{
 
     Robot robot = new Robot();
 
@@ -48,6 +48,8 @@ public class TeleOp22154PP extends OpMode{
         telemetry.addData("LMotorTicks", robot.GetLeftMotor());
         telemetry.addData("ArmTicks", robot.robotHardware.armMotor.getCurrentPosition());
         telemetry.addData("Heading", robot.GetGyroHeading());
+        telemetry.addData("Color", robot.GetColor());
+
         telemetry.update();
     }
 }

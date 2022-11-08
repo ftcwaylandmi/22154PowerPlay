@@ -8,7 +8,7 @@ public class Robot {
 
     int eleHomeTicks = 0;
 
-    int eleAutonHover = 500;
+    int eleAutonHover = 800;
 
     int eleLowTicks = 1340;
     int eleMidTicks = 2214;
@@ -60,6 +60,18 @@ public class Robot {
         robotHardware.armMotor.setPower(p);
     }
 
+    public int GetColor(){
+        if(robotHardware.colorSensor.red() > robotHardware.colorSensor.blue() && robotHardware.colorSensor.red() > robotHardware.colorSensor.green()){
+            return 1;
+        }
+        if(robotHardware.colorSensor.green() > robotHardware.colorSensor.blue() && robotHardware.colorSensor.green() > robotHardware.colorSensor.red()){
+            return 2;
+        }
+        if(robotHardware.colorSensor.blue() > robotHardware.colorSensor.red() && robotHardware.colorSensor.blue() > robotHardware.colorSensor.green()){
+            return 3;
+        }
+        return 0;
+    }
 
     public void DriveByInches(double p, double otr){
         DcMotor l = robotHardware.leftMotor;
@@ -111,8 +123,8 @@ public class Robot {
         final double rotationalCir = 11.5*Math.PI;
         final double ticksPerInch = tpr/wheelCir;
         final double a135 = 3.75;
-        final int a90 = 7;
-        final int a45 = 13;
+        final int a90 = 9;
+        final int a45 = 18;
 
         int ticks = (int) ((tpr/wheelCir)*(rotationalCir/a90));
 
@@ -207,21 +219,21 @@ public class Robot {
 
     public void FullDrive(double yStick, double xStick){
         if(xStick > 0){
-            robotHardware.leftMotor.setPower(yStick/2-(xStick/2)*.8);
-            robotHardware.rightMotor.setPower(yStick/2+(xStick/2)*.8);
+            robotHardware.leftMotor.setPower(yStick/2-(xStick/2));
+            robotHardware.rightMotor.setPower(yStick/2+(xStick/2));
         }else if(xStick < 0){
-            robotHardware.leftMotor.setPower(yStick/2-(xStick/2)*.8);
-            robotHardware.rightMotor.setPower(yStick/2+(xStick/2)*.8);
+            robotHardware.leftMotor.setPower(yStick/2-(xStick/2));
+            robotHardware.rightMotor.setPower(yStick/2+(xStick/2));
         }else if(xStick == 0) {
             robotHardware.leftMotor.setPower(yStick);
             robotHardware.rightMotor.setPower(yStick);
         }else if(yStick == 0){
             if (xStick > 0){
-                robotHardware.leftMotor.setPower(xStick*.8);
-                robotHardware.rightMotor.setPower(-(xStick*.8));
+                robotHardware.leftMotor.setPower(xStick);
+                robotHardware.rightMotor.setPower(-(xStick));
             }else if (xStick < 0){
-                robotHardware.leftMotor.setPower(xStick*.8);
-                robotHardware.rightMotor.setPower(-(xStick*.8));
+                robotHardware.leftMotor.setPower(xStick);
+                robotHardware.rightMotor.setPower(-(xStick));
             }
         }
     }

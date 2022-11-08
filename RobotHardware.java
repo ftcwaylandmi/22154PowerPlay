@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -21,6 +22,8 @@ public class RobotHardware {
 
     public BNO055IMU imu = null;
 
+    public ColorSensor colorSensor = null;
+
     public void Init(HardwareMap ahwMap) {
         hwMap = ahwMap;
 
@@ -34,6 +37,8 @@ public class RobotHardware {
         imu = hwMap.get(BNO055IMU.class, "imu");
 
         imu.initialize(parameters);
+
+        colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
 
         rightMotor = hwMap.get(DcMotor.class, "rightMotor");
         leftMotor = hwMap.get(DcMotor.class, "leftMotor");
