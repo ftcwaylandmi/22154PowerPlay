@@ -123,8 +123,8 @@ public class Robot {
         final double rotationalCir = 11.5*Math.PI;
         final double ticksPerInch = tpr/wheelCir;
         final double a135 = 3.75;
-        final int a90 = 9;
-        final int a45 = 18;
+        final int a90 = 10;
+        final int a45 = 20;
 
         int ticks = (int) ((tpr/wheelCir)*(rotationalCir/a90));
 

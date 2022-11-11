@@ -23,6 +23,7 @@ public class RobotHardware {
     public BNO055IMU imu = null;
 
     public ColorSensor colorSensor = null;
+    private ColorSensor colorSensor1;
 
     public void Init(HardwareMap ahwMap) {
         hwMap = ahwMap;

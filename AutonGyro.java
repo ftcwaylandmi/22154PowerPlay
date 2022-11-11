@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -11,8 +12,8 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@Autonomous(name="AutonTest", group="22154")
-public class AutonTest extends LinearOpMode {
+@Autonomous(name="AutonGyro", group="22154")
+public class AutonGyro extends LinearOpMode {
 
     private Robot robot = new Robot();
 
@@ -132,90 +133,9 @@ public class AutonTest extends LinearOpMode {
         waitForStart();
 
         if(opModeIsActive()){
-            //telemetry.addData("Heading", robot.robotHardware.imu.getAngularOrientation().firstAngle);
-            //robot.TurnByGyro(.5,70,1);
-            //telemetry.update();
-            // grab cone and raise arm
-            robot.EleMotorTicksAuton(1);
-//
-            robot.DriveByInches(.5, 20);
-//            int savedPos = _convertLabelToInt(_getLabel());
-            sleep(3000);
-            int x = 0;
-            for(int i = 0; i<6; i++){
-                x = x + robot.GetColor();
-            }
-            int savedPos = Math.round(x/5);
-            telemetry.addData("Color", savedPos);
-            telemetry.update();
 
-            robot.DriveByInches(.5, 6);
-//            robot.DriveByInches(.5, -.5);
-            if(savedPos == 1)
-            {
-                robot.TurnByInches(.5, 90, 'l');
-                robot.DriveByInches(.5, 16);
-            }
-            if(savedPos == 3)
-            {
-                robot.TurnByInches(.5, 90, 'r');
-                robot.DriveByInches(.5, 18);
-                robot.TurnByInches(.5, 45, 'l');
-                robot.DriveByInches(.5, 6);
-            }
+            robot.TurnByGyro(.5, 90,'r');
 
-//
-//            robot.DriveByInches(.5, -4);
-//            //robot.TurnByInches(.5, 90, 'r');
-//            robot.TurnByInches(.5, 90,'r');
-//            robot.DriveByInches(.5, 20);
-//           // robot.TurnByInches(.5, 90, 'l');
-//            robot.TurnByInches(.5, 90, 'l');
-//            robot.DriveByInches(.5, 20);
-//            robot.TurnByInches(.5, 45, 'r');
-
-//            robot.TurnByInches(.5, 10, -1);
-//            robot.DriveByInches(.5, 20);
-//            robot.TurnByInches(.5, 10, 1);
-//            robot.DriveByInches(.5, 18);
-//            robot.TurnByInches(.5, 5, -1);
-////            robot.DriveByInches(.5,10);
-////            robot.EleMotorTicksAuton(4);
-////            //score
-//            robot.EleMotorTicksAuton(4);
-//            robot.servoIn();
-//            sleep(2000);
-//            robot.stopServo();
-////
-//            robot.TurnByInches(.5, 5, 1);
-//            robot.EleMotorTicksAuton(0);
-//            robot.servoIn();
-//            robot.DriveByInches(.5,14);
-//            //grab
-//            sleep(500);
-//            robot.stopServo();
-//
-//            robot.DriveByInches(.5, -14);
-//            robot.TurnByInches(.5, 7.5, 1);
-//
-//            //score
-//            robot.EleMotorTicksAuton(4);
-//            robot.servoOut();
-//            sleep(1000);
-//            robot.stopServo();
-//
-//            robot.TurnByInches(.5, 7.5, -1);
-            //go to end pos
-//            if(savedPos == 1){
-//                robot.DriveByInches(.5, 40);
-//            }else if(savedPos == 2){
-//                robot.DriveByInches(.5,16);
-//            }else if(savedPos ==3){
-//
-//            }
         }
-
-
-
     }
 }

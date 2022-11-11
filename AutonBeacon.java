@@ -1,4 +1,3 @@
-
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -12,8 +11,8 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@Autonomous(name="AutonScorePark", group="22154")
-public class AutonScorePark extends LinearOpMode {
+@Autonomous(name="AutonBeacon", group="22154")
+public class AutonBeacon extends LinearOpMode {
 
     private Robot robot = new Robot();
 
