@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import static java.lang.Thread.*;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -258,6 +260,7 @@ public class Robot {
                 targetTicks = eleMidTicks;
                 break;
             case 4:
+//                robotHardware.armMotor.setTargetPosition(3150);
                 robotHardware.armMotor.setTargetPosition(eleHighTicks);
                 targetTicks = eleHighTicks;
                 break;
@@ -415,11 +418,14 @@ public class Robot {
     public void servoIn(){
         robotHardware.grabServoLeft.setPower(1);
         robotHardware.grabServoRight.setPower(-1);
+        //sleep(80);
 
     }
     public void servoOut(){
         robotHardware.grabServoLeft.setPower(-1);
         robotHardware.grabServoRight.setPower(1);
+        //sleep(30);
+
     }
 
     public void stopServo(){
