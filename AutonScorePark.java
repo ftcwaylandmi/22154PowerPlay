@@ -128,13 +128,14 @@ public class AutonScorePark extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot.InitHardware(hardwareMap);
-        initVuforia();
-        initTfod();
+//        initVuforia();
+//        initTfod();
         waitForStart();
 
         if(opModeIsActive()){
             robot.EleMotorTicksAuton(1);
-
+            robot.servoOut();
+            sleep(1000);
             robot.DriveByInches(.5, 20);
             robot.DriveByInches(.5, 1);
             sleep(1000);

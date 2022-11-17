@@ -134,7 +134,7 @@ public class AutonGyro extends LinearOpMode {
 
         if(opModeIsActive()){
 
-            robot.TurnByGyro(.5, 90,'r');
+//            robot.TurnByGyro(.5, 90,'r');
 
         }
     }

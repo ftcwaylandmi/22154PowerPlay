@@ -47,7 +47,7 @@ public class TeleOpA extends OpMode{
         telemetry.addData("RMotorTicks", robot.GetRightMotor());
         telemetry.addData("LMotorTicks", robot.GetLeftMotor());
         telemetry.addData("ArmTicks", robot.robotHardware.armMotor.getCurrentPosition());
-        telemetry.addData("Heading", robot.GetGyroHeading());
+//        telemetry.addData("Heading", robot.GetGyroHeading());
         telemetry.addData("Color", robot.GetColor());
 
         telemetry.update();
