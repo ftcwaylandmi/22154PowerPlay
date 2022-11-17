@@ -9,9 +9,7 @@ public class Robot {
     RobotHardware robotHardware = new RobotHardware();
 
     int eleHomeTicks = 0;
-
     int eleAutonHover = 800;
-
     int eleLowTicks = 1340;
     int eleMidTicks = 2214;
     int eleHighTicks = 3150;

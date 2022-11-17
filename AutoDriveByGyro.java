@@ -34,6 +34,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -94,6 +95,7 @@ public class AutoDriveByGyro extends LinearOpMode {
 
     /* Declare OpMode members. */
     private Robot robot = new Robot();
+    private RobotHardware robotHardware = new RobotHardware();
 
     private DcMotor         LeftDriveMotor   = null;
     private DcMotor         RightDriveMotor  = null;
@@ -146,6 +148,9 @@ public class AutoDriveByGyro extends LinearOpMode {
         LeftDriveMotor  = hardwareMap.get(DcMotor.class, "leftMotor");
         RightDriveMotor = hardwareMap.get(DcMotor.class, "rightMotor");
         robot.InitHardware(hardwareMap);
+        robotHardware.Init(hardwareMap);
+//        public void InitHardware(HardwareMap ahw){ robotHardware.Init(ahw); }        }
+
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // When run, this OpMode should start both motors driving forward. So adjust these two lines based on your first test drive.
@@ -187,9 +192,9 @@ public class AutoDriveByGyro extends LinearOpMode {
 
         robot.EleMotorTicksAuton(4);
         driveStraight(DRIVE_SPEED, 4.0, -45.0);  // Drive Forward 17" at -45 degrees (12"x and 12"y)
-        robot.servoOut();
+        servoOut();
         sleep(500);
-        robot.stopServo();
+        stopServo();
         robot.EleMotorTicksAuton(1);
 
         driveStraight(DRIVE_SPEED, -7.0, -45.0);  // Drive Forward 17" at -45 degrees (12"x and 12"y)
@@ -438,5 +443,23 @@ public class AutoDriveByGyro extends LinearOpMode {
         // Save a new heading offset equal to the current raw heading.
         headingOffset = getRawHeading();
         robotHeading = 0;
+    }
+
+    private void servoIn(){
+        robotHardware.grabServoLeft.setPower(1);
+        robotHardware.grabServoRight.setPower(-1);
+        //sleep(80);
+
+    }
+    private void servoOut(){
+        robotHardware.grabServoLeft.setPower(-1);
+        robotHardware.grabServoRight.setPower(1);
+        //sleep(30);
+
+    }
+
+    private void stopServo(){
+        robotHardware.grabServoLeft.setPower(0);
+        robotHardware.grabServoRight.setPower(0);
     }
 }

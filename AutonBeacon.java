@@ -29,7 +29,7 @@ public class AutonBeacon extends LinearOpMode {
     private static final String VUFORIA_KEY =
             "AasKN9z/////AAABmY6EviEEJUTRnIuCqma4bst8h6hb6/Ux1h58a6+irwaI1/8qSx5pv0GmULXArUkQ1myuil/g3k0Xaleb3tHRNUpdII1dyOzCw9GPFF2vmmjYyVWzq29TpqbmwjBrw5Nq6o7uKhgtL4MDXSch7tCkUARTOGBSxLXe+2zsnXB8UTQkXo0GEDHuR2ere1MRC8N66U0UwNwO7obrk2kBfwFTCzPuiGU7r8lECfO3UWYVnAcDHJFhJL6hvxgXPEbZo3vgnxwjvttLU6iMTQYXwBzttw0sw3gPglOLxjs8mhxkjsF8RwGnvm4v/7v9vHFRqh45wpBaV83V6NFrbFAk+CwaSSIljTfMZ7uAfjQxZhRW1RXd";
 
-    VuforiaLocalizer vuforia;
+    // vuforia;
 
     TFObjectDetector tfod;
 
@@ -127,17 +127,16 @@ public class AutonBeacon extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot.InitHardware(hardwareMap);
-        initVuforia();
+       // initVuforia();
         initTfod();
         waitForStart();
 
         if(opModeIsActive()){
             robot.EleMotorTicksAuton(1);
-
+            robot.servoOut();
             robot.DriveByInches(.5, 20);
             robot.DriveByInches(.5, 1);
             sleep(1000);
-            int x = 0;
             for(int i = 0; i<6; i++){
                 x = x + robot.GetColor();
             }
